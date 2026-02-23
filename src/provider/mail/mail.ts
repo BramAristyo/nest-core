@@ -1,4 +1,3 @@
-import { Injectable } from '@nestjs/common';
+import { MailService } from '../external-libraries/mail-ext';
 
-@Injectable()
-export class Mail {}
+export const mailInstance = new MailService();

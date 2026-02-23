@@ -1,7 +1,14 @@
 import { Module } from '@nestjs/common';
-import { Mail } from './mail/mail';
-import { Connection, PostgresDummy, MySQLDummy } from './connection/connection';
+import {
+  Connection,
+  PostgresDummy,
+  MySQLDummy,
+} from './external-libraries/connection-ext';
 import { ProviderController } from './provider.controller';
+import { createNewRepository } from './repository/repository';
+import { Repository } from './external-libraries/repository-ext';
+import { mailInstance } from './mail/mail';
+import { MailService } from './external-libraries/mail-ext';
 
 @Module({
   providers: [
@@ -9,7 +16,15 @@ import { ProviderController } from './provider.controller';
       provide: Connection,
       useClass: process.env.DATABASE === 'mysql' ? MySQLDummy : PostgresDummy,
     },
-    Mail,
+    {
+      provide: MailService,
+      useValue: mailInstance,
+    },
+    {
+      provide: Repository,
+      useFactory: createNewRepository,
+      inject: [Connection],
+    },
   ],
   controllers: [ProviderController],
 })

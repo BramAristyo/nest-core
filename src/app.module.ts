@@ -5,7 +5,8 @@ import { CookieModule } from './cookie/cookie.module';
 import { HttpLearnModule } from './http-learn/http-learn.module';
 import { ConfigModule } from '@nestjs/config';
 import { ProviderModule } from './provider/provider.module';
-import { HttpModule } from './http/http.module';
+import { DatabaseModule } from './database/database.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { HttpModule } from './http/http.module';
       isGlobal: true,
     }),
     ProviderModule,
-    HttpModule,
+    DatabaseModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

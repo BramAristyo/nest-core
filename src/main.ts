@@ -9,10 +9,9 @@ async function bootstrap() {
   app.use(cookieParser());
 
   const config = new DocumentBuilder()
-    .setTitle('Users Example')
-    .setDescription('The users API description')
+    .setTitle('Basic')
+    .setDescription('The Basic API description')
     .setVersion('1.0')
-    .addTag('users')
     .addCookieAuth('token')
     .build();
 

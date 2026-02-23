@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { HttpLearnController } from './http-learn.controller';
 import { Request } from 'express';
 import httpMock from 'node-mocks-http';
+import { HttpLearnService } from './http-learn.service';
 
 describe('HttpLearnController', () => {
   let controller: HttpLearnController;
@@ -9,6 +10,7 @@ describe('HttpLearnController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [HttpLearnController],
+      providers: [HttpLearnService],
     }).compile();
 
     controller = module.get<HttpLearnController>(HttpLearnController);
@@ -40,7 +42,7 @@ describe('HttpLearnController', () => {
   });
 
   it('should can say hello', async () => {
-    const response = await controller.sayHello('John', '10');
-    expect(response).toBe('Hello John with ID 10');
+    const response = await controller.sayHello('John', 123);
+    expect(response).toBe('Hello John with ID 123');
   });
 });

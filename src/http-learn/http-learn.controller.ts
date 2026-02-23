@@ -11,9 +11,12 @@ import {
 } from '@nestjs/common';
 import { ApiBody, ApiHeader, ApiParam, ApiQuery } from '@nestjs/swagger';
 import type { Request } from 'express';
+import { HttpLearnService } from './http-learn.service';
 
 @Controller('http-learn')
 export class HttpLearnController {
+  constructor(private service: HttpLearnService) {}
+
   @Get()
   get(): string {
     return 'This is GET endpoint';
@@ -45,9 +48,9 @@ export class HttpLearnController {
     User @Query or @Param for readable code
   */
   @Get('say-hello/:id')
-  async sayHello(@Query('name') name: string, @Param('id') id: string) {
+  async sayHello(@Query('name') name: string, @Param('id') id: number) {
     await this.loading(3000);
-    return `Hello ${name} with ID ${id}`;
+    return this.service.sayHello(name, id);
   }
 
   private loading = (time: number): Promise<void> => {
@@ -62,12 +65,7 @@ export class HttpLearnController {
   @HttpCode(200)
   @Get('profile')
   profile(): Record<string, any> {
-    return {
-      data: {
-        name: 'John Doe',
-        email: 'john.doe@example.com',
-      },
-    };
+    return this.service.profile();
   }
 
   @Get('docs')

@@ -2,5 +2,8 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  }
+  },
+  "editor.fontSize": 12,
+  "editor.lineHeight": 16,
+  "editor.letterSpacing": 0
 }

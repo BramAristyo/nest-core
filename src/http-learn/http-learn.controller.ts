@@ -4,6 +4,7 @@ import {
   Header,
   HttpCode,
   Param,
+  ParseIntPipe,
   Post,
   Query,
   Redirect,
@@ -53,7 +54,10 @@ export class HttpLearnController {
     User @Query or @Param for readable code
   */
   @Get('say-hello/:id')
-  async sayHello(@Query('name') name: string, @Param('id') id: number) {
+  async sayHello(
+    @Query('name') name: string,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
     await this.loading(3000);
 
     const schema = z.string().max(5);

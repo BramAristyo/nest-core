@@ -55,7 +55,7 @@ bootstrap().catch((error) => {
 
 // TODO - NestJS Learning Progress:
 //
-// ✅ COMPLETED:
+// COMPLETED:
 // [x] Controllers, Services, Modules - Basic building blocks
 // [x] Middleware - Request/Response intercepting (LogMiddleware)
 // [x] Interceptors - Transform response (TimeInterceptor)
@@ -70,13 +70,13 @@ bootstrap().catch((error) => {
 // [x] Repository Pattern - Data access layer abstraction
 // [x] Dynamic Modules - forRoot pattern (ValidationModule.forRoot)
 //
-// 🔐 SECURITY (Required for Production):
+// SECURITY (Required for Production):
 // [ ] Guards - Authentication & Authorization (JWT, Passport, Role-based access)
 // [ ] Helmet - Security headers (npm i helmet)
 // [ ] CORS - Cross-Origin Resource Sharing (app.enableCors())
 // [ ] Rate Limiting / Throttling - Prevent DDoS (@nestjs/throttler)
 //
-// 🎯 ADVANCED FEATURES:
+// ADVANCED FEATURES:
 // [ ] Custom Decorators - Create custom decorators (@CurrentUser, @Roles, etc)
 // [ ] Caching - Redis/In-memory caching (@nestjs/cache-manager)
 // [ ] API Versioning - Version control for API (app.enableVersioning())
@@ -84,7 +84,7 @@ bootstrap().catch((error) => {
 // [ ] Health Checks - Monitoring endpoint (@nestjs/terminus)
 // [ ] Compression - Gzip response (compression middleware)
 //
-// ⚡ REAL-TIME & ASYNC:
+// REAL-TIME & ASYNC:
 // [ ] WebSockets - Real-time communication (@nestjs/websockets)
 // [ ] Task Scheduling - Cron jobs (@nestjs/schedule)
 // [ ] Queue / Bull - Background jobs & message queue (@nestjs/bull)

@@ -7,10 +7,10 @@ import { ConfigModule } from '@nestjs/config';
 import { ProviderModule } from './provider/provider.module';
 import { DatabaseModule } from './database/database.module';
 import { UserModule } from './user/user.module';
-import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { WinstonModule } from 'nest-winston';
 import { ValidationModule } from './validation/validation.module';
 import * as winston from 'winston';
+import { HelloMiddleware } from './hello/hello.middleware';
 
 @Module({
   imports: [
@@ -35,6 +35,6 @@ import * as winston from 'winston';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes('user');
+    consumer.apply(HelloMiddleware).forRoutes('*');
   }
 }

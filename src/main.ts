@@ -4,13 +4,29 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import cookieParser from 'cookie-parser';
 import { ConfigService } from '@nestjs/config';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
-import { LoggerService } from '@nestjs/common';
+import { LoggerService, ValidationPipe } from '@nestjs/common';
+import { GlobalExceptionFilter } from './global-exception/global-exception.filter';
+import { Logger } from 'winston';
+import { HttpAdapterHost } from '@nestjs/core';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const logger = app.get<LoggerService>(WINSTON_MODULE_NEST_PROVIDER);
   app.useLogger(logger);
   app.use(cookieParser());
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
+
+  const httpAdapterHost = app.get(HttpAdapterHost);
+  app.useGlobalFilters(
+    new GlobalExceptionFilter(logger as Logger, httpAdapterHost),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('Basic')

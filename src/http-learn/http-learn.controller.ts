@@ -81,4 +81,9 @@ export class HttpLearnController {
   getDocs() {
     return;
   }
+
+  @Get('test-error')
+  testError() {
+    throw new Error('Unexpected Error !');
+  }
 }

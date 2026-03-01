@@ -25,4 +25,10 @@ export class UserRepository {
   async findAll() {
     return this.databaseService.user.findMany();
   }
+
+  async findByEmail(email: string) {
+    return await this.databaseService.user.findUnique({
+      where: { email },
+    });
+  }
 }

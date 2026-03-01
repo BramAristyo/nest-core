@@ -8,4 +8,8 @@ export class UserService {
   save(data: CreateUserDto) {
     return this.repository.save(data.email, data.name);
   }
+
+  findAll() {
+    return this.repository.findAll();
+  }
 }

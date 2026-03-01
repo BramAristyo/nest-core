@@ -26,6 +26,7 @@ import { MailService } from './external-libraries/mail-ext';
       inject: [Connection],
     },
   ],
+  // Export for external service usage
   exports: [MailService],
   controllers: [ProviderController],
 })

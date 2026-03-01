@@ -12,10 +12,15 @@ import {
 import { ApiBody, ApiHeader, ApiParam, ApiQuery } from '@nestjs/swagger';
 import type { Request } from 'express';
 import { HttpLearnService } from './http-learn.service';
+import { ValidationService } from 'src/validation/validation.service';
+import { z } from 'zod';
 
 @Controller('http-learn')
 export class HttpLearnController {
-  constructor(private service: HttpLearnService) {}
+  constructor(
+    private service: HttpLearnService,
+    private validationService: ValidationService,
+  ) {}
 
   @Get()
   get(): string {
@@ -50,6 +55,9 @@ export class HttpLearnController {
   @Get('say-hello/:id')
   async sayHello(@Query('name') name: string, @Param('id') id: number) {
     await this.loading(3000);
+
+    const schema = z.string().max(5);
+    name = this.validationService.validate(schema, name);
     return this.service.sayHello(name, id);
   }
 
